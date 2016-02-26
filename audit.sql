@@ -179,7 +179,7 @@ BEGIN
         END IF;
     ELSIF (TG_OP = 'DELETE' AND TG_LEVEL = 'ROW') THEN
         audit_row.row_data = row_to_json(OLD)::JSONB - excluded_cols;
-    ELSIF (TG_OP = 'INSERT' AND TG_LEVEL = 'ROW')::JSONB THEN
+    ELSIF (TG_OP = 'INSERT' AND TG_LEVEL = 'ROW') THEN
         audit_row.row_data =  row_to_json(NEW)::JSONB - excluded_cols;
     ELSIF (TG_LEVEL = 'STATEMENT' AND TG_OP IN ('INSERT','UPDATE','DELETE','TRUNCATE')) THEN
         audit_row.statement_only = 't';
